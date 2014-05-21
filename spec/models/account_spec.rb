@@ -10,12 +10,6 @@ module Plutus
     describe "when using a child type" do
       let(:account) { FactoryGirl.create(:account, type: "Finance::Asset") }
       it { should be_valid }
-      
-      it "should be unique per name" do
-        conflict = FactoryGirl.build(:account, name: account.name, type: account.type)
-        conflict.should_not be_valid
-        conflict.errors[:name].should == ["has already been taken"]
-      end
     end
     
     it { should_not respond_to(:balance) }
